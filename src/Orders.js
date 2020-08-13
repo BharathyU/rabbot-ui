@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -7,6 +7,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Title from './Title';
+import axios from 'axios';
+
 
 // Generate Order Data
 function createData(id, date, interviewId, jobPosition, jobLocation ,experience,company, status) {
@@ -31,10 +33,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
 export default function Orders() {
+
+const [data, setData] = useState([]);
+
   const classes = useStyles();
+
+
+ useEffect(() => {
+    axios.get("/hello",{
+      headers: {
+                      'Access-Control-Allow-Origin': '*'
+                  }  })
+      .then(response => response.data)
+      .then(data => setData(data));
+  });
   return (
     <React.Fragment>
+
+    <h1> {data}</h1>
+
       <Title>Available Interviews</Title>
       <Table size="small">
         <TableHead>
