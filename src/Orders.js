@@ -53,7 +53,7 @@ const [data, setData] = useState([]);
   return (
     <React.Fragment>
 
-    <h1> {data}</h1>
+
 
       <Title>Available Interviews</Title>
       <Table size="small">
